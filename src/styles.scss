@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'src/assets/styles/_theme.scss';
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: $background;
+    color: $white;
+}
+
+.container {
+    max-width: 890px;
+    margin: auto;
+}

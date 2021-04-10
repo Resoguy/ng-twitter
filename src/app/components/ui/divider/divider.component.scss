@@ -1,0 +1,11 @@
+@import 'src/assets/styles/_theme.scss';
+
+.divider {
+    margin: 20px;
+    background-color: $line;
+    height: 1px;
+    
+    &.marginless {
+        margin: 0;
+    }
+}

@@ -1,0 +1,43 @@
+@import 'src/assets/styles/_theme.scss';
+
+.btn {
+    border: 1px solid transparent;
+    border-radius: $btn-radius;
+    cursor: pointer;
+    font-weight: $bold;
+    font-size: $md-font;
+    outline: none;
+    transition: $transition;
+}
+
+.sm {
+    padding: $xs-space $md-space;
+    font-size: $sm-font;
+}
+
+.md {
+    padding: $sm-space $lg-space;
+}
+
+.lg {
+    padding: $md-space $xl-space;
+}
+
+.primary {
+    background-color: $blue;
+    color: $white;
+
+    &:hover {
+        background-color: darken($blue, 5%);
+    }
+}
+
+.outline {
+    background-color: transparent;
+    border-color: $blue;
+    color: $blue;
+
+    &:hover {
+        background-color: rgba($blue, 0.1);
+    }
+}

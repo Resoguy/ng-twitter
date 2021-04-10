@@ -1,0 +1,14 @@
+<div class="input-wrapper" [ngClass]="{focused: isFocused}">
+    <fa-icon 
+        *ngIf="icon" 
+        class="input-icon"
+        [icon]="icon"></fa-icon>
+
+    <input 
+        class="input"
+        [type]="type"
+        [name]="name"
+        [placeholder]="placeholder"
+        (focus)="focusHandler()"
+        (blur)="blurHandler()" />
+</div>

@@ -1,0 +1,29 @@
+@import 'src/assets/styles/_theme.scss';
+
+.link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $white;
+    font-size: $lg-font;
+    font-weight: $bold;
+    margin: $xl-space 0;
+
+    .link-box {
+        padding: $sm-space $lg-space;
+        transition: $transition;
+    }
+
+    .link-text {
+        margin-left: $lg-space;
+    }
+
+    &:hover {
+        color: $blue;
+
+        .link-box {
+            background-color: rgba($blue, 0.1);
+            border-radius: $btn-radius;
+        }
+    }
+}

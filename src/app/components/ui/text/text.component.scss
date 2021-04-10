@@ -1,0 +1,26 @@
+@import 'src/assets/styles/_theme.scss';
+
+.normal {
+    font-weight: $normal;
+}
+.bold {
+    font-weight: $bold;
+}
+.sm {
+    font-size: $sm-font;
+}
+.md {
+    font-size: $md-font;
+}
+.lg {
+    font-size: $lg-font;
+}
+.white {
+    color: $white;
+}
+.grey {
+    color: $grey;
+}
+.blue {
+    color: $blue;
+}

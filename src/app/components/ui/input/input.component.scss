@@ -1,0 +1,39 @@
+@import 'src/assets/styles/_theme.scss';
+
+.input-wrapper {
+    background-color: $input;
+    border-radius: $btn-radius;
+    border: 1px solid transparent;
+    display: flex;
+    transition: $transition;
+
+    .input-icon {
+        padding: $md-space $lg-space;
+        color: $grey;
+        transition: $transition;
+    }
+
+    .input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-size: $md-font;
+        font-weight: $normal;
+        caret-color: $white;
+        color: $white;
+
+        &::placeholder {
+            color: $grey;
+        }
+    }
+
+    &.focused {
+        border-color: $blue;
+        background-color: $background;
+
+        .input-icon {
+            color: $blue;
+        }
+    }
+}
