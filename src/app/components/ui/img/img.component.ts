@@ -12,6 +12,10 @@ export class ImgComponent implements OnInit {
   @Input() border: boolean = false;
   @Input() size: string = 'md';
 
+  get dynamicClasses() {
+    return `${this.size} ${this.variant}`;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

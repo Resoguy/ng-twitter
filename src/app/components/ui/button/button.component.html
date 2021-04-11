@@ -1,5 +1,6 @@
 <button 
     class="btn"
-    [class]="[variant, size]">
+    [class]="dynamicClasses"
+    [ngClass]="{block: block}">
     <ng-content></ng-content>
 </button>

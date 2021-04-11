@@ -1,0 +1,15 @@
+@import 'src/assets/styles/_theme.scss';
+
+.list-wrapper {
+    .list-header {
+        padding: $md-space $lg-space;
+    }
+
+    .list-content {
+        
+    }
+
+    .list-footer {
+        padding: $md-space $lg-space;
+    }
+}

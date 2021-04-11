@@ -1,0 +1,47 @@
+@import 'src/assets/styles/_theme.scss';
+
+.feed-item-wrapper {
+    display: flex;
+    padding: $md-space $lg-space;
+
+    .item-left {
+        flex-basis: 50px;
+        flex-shrink: 0;
+    }
+    
+    .item-content {
+        flex-grow: 1;
+        margin-left: $md-space;
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+
+            .header-title-wrapper {
+                display: flex;
+
+                app-text {
+                    margin-right: $xs-space;
+                }
+            }
+
+            .header-down-icon {
+                font-size: $sm-font;
+                color: $grey;
+            }
+        }
+    }
+
+    .content-actions {
+        display: flex;
+        margin-top: $lg-space;
+
+        .action-wrapper {
+            flex: 1;
+
+            .action-icon {
+                color: $grey;
+            }
+        }
+    }
+}

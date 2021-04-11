@@ -1,0 +1,23 @@
+<app-card variant="rounded">
+    <div class="list-wrapper">
+        <header class="list-header">
+            <app-text size="lg" weight="bold">
+                {{title}}
+            </app-text>
+        </header>
+
+        <app-divider></app-divider>
+
+        <div class="list-content">
+            <ng-content></ng-content>
+        </div>
+
+        <app-divider></app-divider>
+
+        <footer class="list-footer">
+            <app-text size="sm" color="blue">
+                {{footerText}}
+            </app-text>
+        </footer>
+    </div>
+</app-card>

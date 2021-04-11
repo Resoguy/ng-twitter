@@ -1,0 +1,49 @@
+<app-card>
+    <div class="feed-item-wrapper">
+        <div class="item-left">
+            <app-img
+                [src]="tweet.user.imgUrl">
+            </app-img>
+        </div>
+
+        <div class="item-content">
+            <header class="content-header">
+                <div class="header-title-wrapper">
+                    <app-text weight="bold">
+                        {{tweet.user.name}}
+                    </app-text>
+                    <app-text color="grey">
+                        {{tweet.user.username}}
+                    </app-text>
+
+                    <app-text color="grey">
+                        · {{tweet.created_at}}
+                    </app-text>
+                </div>
+
+                <fa-icon class="header-down-icon" [icon]="faChevronDown"></fa-icon>
+            </header>
+
+            <div class="content-body">
+                <app-text>
+                    {{tweet.text}}
+                </app-text>
+            </div>
+
+            <div class="content-actions">
+                <div class="action-wrapper">
+                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                </div>
+                <div class="action-wrapper">
+                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                </div>
+                <div class="action-wrapper">
+                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                </div>
+                <div class="action-wrapper">
+                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-card>

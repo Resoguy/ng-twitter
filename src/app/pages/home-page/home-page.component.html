@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="home-page-wrapper">
+        <div class="left-menu-wrapper">
+            <app-side-menu></app-side-menu>
+        </div>
+    
+        <div class="main-content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    
+        <div class="aside-content-wrapper">
+            <app-input 
+                [icon]="faSearch"
+                placeholder="Search Twitter">
+            </app-input>
+
+            <app-card variant="rounded">
+                <div class="img-grid">
+                    <app-img
+                        *ngFor="let img of adImages"
+                        variant="square"
+                        [src]="img.imgUrl">
+                    </app-img>
+                </div>
+            </app-card>
+
+            <app-list-wrapper
+                title="You might like"
+                footerText="Show more">
+
+                <app-list-item
+                    *ngFor="let user of users"
+                    [user]="user">
+                </app-list-item>
+                
+            </app-list-wrapper>
+
+            <app-list-wrapper
+                title="Trends for you"
+                footerText="Show more">
+
+                <app-trend-item
+                    *ngFor="let trend of trends"
+                    [trend]="trend">
+                </app-trend-item>
+
+            </app-list-wrapper>
+        </div>
+    </div>
+</div>

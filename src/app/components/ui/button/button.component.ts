@@ -8,6 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input() variant: string = 'primary';
   @Input() size: string = 'md';
+  @Input() block: boolean = false;
+
+  get dynamicClasses() {
+    return `${this.size} ${this.variant}`;
+  }
 
   constructor() { }
 

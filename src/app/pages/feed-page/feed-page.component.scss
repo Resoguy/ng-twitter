@@ -1,0 +1,13 @@
+@import 'src/assets/styles/_theme.scss';
+
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $sm-space $md-space;
+
+    .header-icon {
+        color: $blue;
+        font-size: $xl-font;
+    }
+}

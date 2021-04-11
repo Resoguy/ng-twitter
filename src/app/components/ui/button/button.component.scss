@@ -9,7 +9,10 @@
     outline: none;
     transition: $transition;
 }
-
+.block {
+    width: 100%;
+    display: block;
+}
 .sm {
     padding: $xs-space $md-space;
     font-size: $sm-font;

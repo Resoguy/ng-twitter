@@ -1,0 +1,16 @@
+<app-card>
+    <header class="feed-header">
+        <app-text weight="bold" size="lg">
+            Homepage
+        </app-text>
+    
+        <fa-icon class="header-icon" [icon]="faJediOrder"></fa-icon>
+    </header>
+</app-card>
+
+<div class="feed-list">
+    <app-tweet-card
+        *ngFor="let tweet of tweets"
+        [tweet]="tweet">
+    </app-tweet-card>
+</div>

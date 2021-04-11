@@ -2,6 +2,7 @@
 
 .card {
     background-color: transparent;
+    overflow: hidden;
 }
 .basic {
     border: 1px solid $line;
@@ -12,4 +13,5 @@
 .rounded {
     background-color: $card;
     border-radius: $card-radius;
+    margin: $lg-space 0;
 }

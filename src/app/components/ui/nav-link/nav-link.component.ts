@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NavLinkComponent implements OnInit {
   @Input() icon: any;
+  @Input() to: string;
 
   constructor() { }
 

@@ -1,0 +1,94 @@
+<app-card>
+    <header class="profile-header">
+        <a routerLink="/home">
+            <fa-icon class="back-btn" [icon]="faArrowLeft"></fa-icon>
+        </a>
+
+        <div class="header-title">
+            <app-text weight="bold" size="lg">
+                Name
+            </app-text>
+            <app-text color="grey" size="sm">
+                2624 Tweets
+            </app-text>
+        </div>
+    </header>
+</app-card>
+
+<app-card>
+    <app-img
+        variant="square"
+        src="https://unsplash.it/600/200">
+    </app-img>
+</app-card>
+
+<app-card>
+    <header class="profile-card-header">
+        <app-button>
+            Following
+        </app-button>
+    </header>
+
+    <div class="profile-title">
+        <app-text weight="bold" size="lg">
+            Name
+        </app-text>
+        <app-text color="grey">
+            @username
+        </app-text>
+    </div>
+
+    <div class="profile-bio">
+        <app-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident veniam esse dicta ipsa earum ipsam obcaecati fuga voluptatibus laboriosam, officiis, accusantium autem totam. Eligendi explicabo deserunt nemo magnam assumenda!
+        </app-text>
+    </div>
+
+    <div class="profile-info">
+        <div class="info-item">
+            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+            <app-text color="grey" size="sm">
+                City, Country
+            </app-text>
+        </div>
+
+        <div class="info-item">
+            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+            <app-text color="grey" size="sm">
+                City, Country
+            </app-text>
+        </div>
+
+        <div class="info-item">
+            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+            <app-text color="grey" size="sm">
+                City, Country
+            </app-text>
+        </div>
+    </div>
+
+    <div class="profile-statistics">
+        <div class="stats-item">
+            <app-text weight="bold" size="sm">
+                556
+            </app-text>
+            <app-text color="grey" size="sm">
+                Following
+            </app-text>
+        </div>
+
+        <div class="stats-item">
+            <app-text weight="bold" size="sm">
+                236
+            </app-text>
+            <app-text color="grey" size="sm">
+                Followers
+            </app-text>
+        </div>
+    </div>
+</app-card>
+
+<app-tweet-card
+    *ngFor="let tweet of tweets"
+    [tweet]="tweet">
+</app-tweet-card>

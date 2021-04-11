@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./divider.component.scss']
 })
 export class DividerComponent implements OnInit {
-  @Input() marginless: boolean = false;
+  @Input() marginless: boolean = true;
 
   constructor() { }
 

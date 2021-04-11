@@ -1,0 +1,24 @@
+@import 'src/assets/styles/_theme.scss';
+
+.home-page-wrapper {
+    display: flex;
+}
+
+.left-menu-wrapper {
+    flex-basis: 210px;
+}
+
+.main-content-wrapper {
+    flex: 1;
+    margin: 0 $xl-space 0 $xxl-space;
+}
+
+.aside-content-wrapper {
+    flex-basis: 345px;
+    padding-top: $sm-space;
+
+    .img-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
