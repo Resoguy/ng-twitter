@@ -1,2 +1,55 @@
-<p>landing-page works!</p>
-<a routerLink="/home">Home</a>
+<div class="landing-page">
+    <div class="landing-wrapper">
+        <div class="landing-image">
+            <fa-icon class="landing-icon" [icon]="faTwitter"></fa-icon>
+        </div>
+
+        <div class="landing-content">
+            <header class="content-header">
+                <fa-icon class="brand-logo" [icon]="faTwitter"></fa-icon>
+            </header>
+
+            <div class="content-titles">
+                <app-text size="xxxl" weight="bold">
+                    Happening Now
+                </app-text>
+
+                <app-text class="subtitle" size="xl" weight="bold">
+                    Join Twitter today.
+                </app-text>
+
+                <div class="content-actions">
+                    <app-button 
+                        [block]="true"
+                        size="lg"
+                        (click)="openSignupModal()">
+                        Sign up
+                    </app-button>
+
+                    <app-button 
+                        class="login-btn"
+                        variant="outline" 
+                        [block]="true"
+                        size="lg"
+                        (click)="openLoginModal()">
+                        Log in
+                    </app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="landing-footer">
+        <app-text color="grey">
+            @2021 Twitter, Inc.
+        </app-text>
+    </footer>
+</div>
+
+<app-modal [isOpen]="isSignupModalOpen">
+    <app-sign-up-form></app-sign-up-form>
+</app-modal>
+
+<app-modal [isOpen]="isLoginModalOpen">
+    <app-log-in-form></app-log-in-form>
+</app-modal>

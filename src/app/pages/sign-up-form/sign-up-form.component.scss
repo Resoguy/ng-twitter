@@ -1,0 +1,30 @@
+@import 'src/assets/styles/_theme.scss';
+
+.signup-form-wrapper {
+    padding: $sm-space $lg-space;
+
+    .signup-header {
+        display: flex;
+        position: relative;
+        justify-content: center;
+
+        .signup-logo {
+            font-size: $xl-font;
+        }
+    }
+
+    .signup-content {
+        padding: 0 $lg-space;
+        margin: $lg-space 0;
+    }
+
+    .signup-title {
+        margin: $xl-space 0 $lg-space;
+        display: block;
+    }
+
+    .signup-btn {
+        display: block;
+        margin: $md-space 0;
+    }
+}

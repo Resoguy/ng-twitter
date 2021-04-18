@@ -9,3 +9,9 @@
         margin: 0;
     }
 }
+.lg {
+    height: $md-space;
+    background-color: $card;
+    border-right: 1px solid $line;
+    border-left: 1px solid $line;
+}

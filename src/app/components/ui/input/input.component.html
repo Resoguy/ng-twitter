@@ -1,14 +1,29 @@
-<div class="input-wrapper" [ngClass]="{focused: isFocused}">
-    <fa-icon 
-        *ngIf="icon" 
-        class="input-icon"
-        [icon]="icon"></fa-icon>
+<div class="input-container">
+    <div 
+        class="input-wrapper" 
+        [class]="dynamicClasses"
+        [ngClass]="{focused: isFocused}">
+        <fa-icon 
+            *ngIf="icon" 
+            class="input-icon"
+            [icon]="icon"></fa-icon>
 
-    <input 
-        class="input"
-        [type]="type"
-        [name]="name"
-        [placeholder]="placeholder"
-        (focus)="focusHandler()"
-        (blur)="blurHandler()" />
+        <label 
+            *ngIf="label && variant === 'normal'" 
+            [for]="name"
+            class="label">
+            {{label}}
+        </label>
+
+        <input 
+            class="input"
+            [type]="type"
+            [name]="name"
+            [id]="name"
+            [placeholder]="placeholder"
+            [value]="value"
+            (input)="onChange($event.target.value)"
+            (focus)="focusHandler()"
+            (blur)="blurHandler()" />
+    </div>
 </div>

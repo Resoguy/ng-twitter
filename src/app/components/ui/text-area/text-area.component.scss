@@ -1,0 +1,19 @@
+@import 'src/assets/styles/_theme.scss';
+
+
+.textarea-wrapper {
+    display: flex;
+}
+.textarea {
+    border: 1px solid transparent;
+    color: $white;
+    background-color: transparent;
+    outline: none;
+    font-size: $lg-font;
+    width: 100%;
+    resize: none;
+
+    &::placeholder {
+        color: $grey;
+    }
+}

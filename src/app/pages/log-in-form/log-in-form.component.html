@@ -1,0 +1,31 @@
+<div class="signup-form-wrapper">
+    <form [formGroup]="loginForm" (submit)="login()">
+        <header class="signup-header">
+            <fa-icon class="signup-logo" [icon]="faTwitter"></fa-icon>
+        </header>
+
+        <div class="signup-content">
+            <app-text class="signup-title" size="lg" weight="bold">
+                Log in to your account
+            </app-text>
+
+            <app-input
+                name="identifier"
+                label="Email or Username"
+                formControlName="identifier"></app-input>
+
+            <app-input
+                type="password"
+                name="password"
+                label="Password"
+                formControlName="password"></app-input>
+
+            <app-button 
+                class="signup-btn" 
+                type="submit"
+                [isLoading]="isLoading">
+                Log in
+            </app-button>
+        </div>
+    </form>
+</div>

@@ -15,3 +15,85 @@
         margin-left: $md-space;
     }
 }
+.profile-card-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: $md-space $lg-space;
+}
+
+.profile-title {
+    padding: 0 $lg-space $sm-space $lg-space;
+}
+
+.profile-bio {
+    padding: 0 $lg-space;
+    padding: 0 $md-space $lg-space 0 $lg-space;
+}
+.profile-info {
+    padding: $sm-space $lg-space;
+    display: flex;
+    justify-content: flex-start;
+}
+.info-item {
+    margin-right: $xl-space;
+    display: flex;
+    align-items: center;
+
+    &-icon {
+        padding-right: $sm-space;
+    }
+}
+.profile-statistics {
+    display: flex;
+    padding: $sm-space $lg-space;
+
+    .stats-item {
+        display: flex;
+
+        &:first-of-type {
+            padding-right:$xl-space;
+        }
+    }
+}
+.stats-item {
+    align-items: center;
+ 
+    &-count {
+        padding-right: $xs-space;
+    }
+}
+.stats-item-title {
+    margin-left: $xs-space;
+}
+.profile-img {
+    position: absolute;
+    top: 0;
+    left: $lg-space;
+    transform: translateY(-50%);
+}
+.profile-followers {
+    display: flex;
+    align-items: center;
+    padding: $sm-space $lg-space;
+    text-decoration: none;
+    color: $grey;
+
+    .followers-images-wrapper {
+        display: flex;
+
+        .follower-image:not(:first-child) {
+            position: relative;
+        }
+    }
+    .followers-text-wrapper {
+        margin-left: -$md-space;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.tabs-wrapper {
+    margin-top: $xl-space;
+    display: block;
+}

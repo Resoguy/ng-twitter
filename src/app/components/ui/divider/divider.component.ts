@@ -7,6 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DividerComponent implements OnInit {
   @Input() marginless: boolean = true;
+  @Input() size: string = 'md';
+
+  get dynamicClasses() {
+    return `${this.size}`;
+  }
 
   constructor() { }
 

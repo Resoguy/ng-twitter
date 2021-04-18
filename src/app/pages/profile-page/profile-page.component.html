@@ -22,8 +22,13 @@
     </app-img>
 </app-card>
 
-<app-card>
+<app-card [relative]="true">
     <header class="profile-card-header">
+        <app-img 
+            class="profile-img" 
+            size="lg"
+            src="https://unsplash.it/135/135"
+            [border]="true"></app-img>
         <app-button>
             Following
         </app-button>
@@ -47,21 +52,21 @@
     <div class="profile-info">
         <div class="info-item">
             <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
-            <app-text color="grey" size="sm">
+            <app-text class="stats-item-title" color="grey" size="sm">
                 City, Country
             </app-text>
         </div>
 
         <div class="info-item">
             <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
-            <app-text color="grey" size="sm">
+            <app-text class="stats-item-title" color="grey" size="sm">
                 City, Country
             </app-text>
         </div>
 
         <div class="info-item">
             <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
-            <app-text color="grey" size="sm">
+            <app-text class="stats-item-title" color="grey" size="sm">
                 City, Country
             </app-text>
         </div>
@@ -72,7 +77,7 @@
             <app-text weight="bold" size="sm">
                 556
             </app-text>
-            <app-text color="grey" size="sm">
+            <app-text class="stats-item-title" color="grey" size="sm">
                 Following
             </app-text>
         </div>
@@ -81,11 +86,35 @@
             <app-text weight="bold" size="sm">
                 236
             </app-text>
-            <app-text color="grey" size="sm">
+            <app-text class="stats-item-title" color="grey" size="sm">
                 Followers
             </app-text>
         </div>
     </div>
+
+    <a href="#" class="profile-followers">
+        <div class="followers-images-wrapper">
+            <app-img 
+                *ngFor="let followerImage of followersImages; index as i"
+                class="follower-image"
+                [ngStyle]="{transform: 'translateX(-' + (50 * i) + '%)', 'z-index': i * -1}"
+                size="sm" 
+                [src]="followerImage"></app-img>
+        </div>
+
+        <div class="followers-text-wrapper">
+            <app-text color="grey" size="sm">
+                Followed by Joe, Soap and 9 others
+            </app-text>
+        </div>
+    </a>
+
+    <app-tabs
+        class="tabs-wrapper"
+        [tabs]="profileTabs"
+        name="profileTabs"
+        [selectedTab]="selectedProfileTab"
+        (select)="setProfileTab($event)"></app-tabs>
 </app-card>
 
 <app-tweet-card

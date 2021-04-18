@@ -1,6 +1,51 @@
 @import 'src/assets/styles/_theme.scss';
 
-.input-wrapper {
+.input-container {
+    padding: $md-space 0;
+}
+
+.normal {
+    background-color: transparent;
+    border: 1px solid $line;
+    position: relative;
+    border-radius: $input-radius;
+    overflow: hidden;
+    transition: $transition;
+    padding-top: $sm-space;
+
+
+    .label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: $md-space;
+        color: $grey;
+        font-size: $md-font;
+        transition: $transition;
+    }
+
+    .input {
+        padding: $lg-space $md-space;
+        background-color: transparent;
+        border: none;
+        width: 100%;
+        caret-color: $white;
+        color: $white;
+        outline: none;
+    }
+
+    &.focused {
+        border-color: $blue;
+
+        .label {
+            color: $blue;
+            font-size: $xs-font;
+            top: 25%;
+        }
+    }
+}
+
+.rounded {
     background-color: $input;
     border-radius: $btn-radius;
     border: 1px solid transparent;

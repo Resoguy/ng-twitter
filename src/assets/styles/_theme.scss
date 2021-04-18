@@ -5,6 +5,7 @@ $background: #17202A;
 $grey: #8A98A4;
 $card: #1C2733;
 $line: #3A444C;
+$overlay: #5b7083;
 $white: #fff;
 
 // Spacings
@@ -13,19 +14,23 @@ $sm-space: 8px;
 $md-space: 12px;
 $lg-space: 16px;
 $xl-space: 32px;
-$xxl-space: 40px;
+$xxl-space: 42px;
 
 // Font Sizes
+$xs-font: 11px;
 $sm-font: 13px;
 $md-font: 15px;
 $lg-font: 20px;
 $xl-font: 32px;
+$xxl-font: 42px;
+$xxxl-font: 62px;
 
 // Font Weights
 $normal: 400;
 $bold: 700;
 
 // Radius
+$input-radius: 4px;
 $btn-radius: 25px;
 $card-radius: 14px;
 
@@ -36,3 +41,14 @@ $transition: all 150ms ease-in-out;
 $sm-img: 18px;
 $md-img: 50px;
 $lg-img: 135px;
+
+// Z-index
+$z-0: 0;
+$z-1: 1;
+$z-2: 2;
+$z-3: 3;
+
+$z-9: 9;
+$z-99: 99;
+$z-999: 999;
+$z-9999: 9999;

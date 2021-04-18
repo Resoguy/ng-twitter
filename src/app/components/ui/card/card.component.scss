@@ -15,3 +15,10 @@
     border-radius: $card-radius;
     margin: $lg-space 0;
 }
+.relative {
+    position: relative;
+    overflow: visible;
+}
+.padding {
+    padding: $md-space $lg-space;
+}

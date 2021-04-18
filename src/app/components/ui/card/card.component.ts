@@ -7,6 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
   @Input() variant: string = 'basic';
+  @Input() relative: boolean = false;
+  @Input() padding: boolean = false;
+
+  get dynamicClasses() {
+    return `${this.variant}`;
+  }
 
   constructor() { }
 

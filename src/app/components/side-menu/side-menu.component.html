@@ -33,6 +33,20 @@
     More
 </app-nav-link>
 
-<app-button [block]="true" to="/home/1">
+<app-button [block]="true" to="/home/1" (click)="toggleTweetModal()">
     Tweet
 </app-button>
+
+<app-modal [isOpen]="isTweetModalOpen">
+    <header class="modal-header">
+        <app-button (click)="toggleTweetModal()" variant="flat" [icon]="true">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </app-button>
+    </header>
+
+    <app-divider></app-divider>
+    
+    <div class="modal-content">
+        <app-tweet-input></app-tweet-input>
+    </div>
+</app-modal>

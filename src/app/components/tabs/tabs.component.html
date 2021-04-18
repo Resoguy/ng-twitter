@@ -1,0 +1,23 @@
+<div class="tabs-wrapper">
+    <label 
+        *ngFor="let tab of tabs"
+        class="tab-label" 
+        [ngClass]="{active: selectedTab === tab.value}"
+        [for]="tab.value">
+        <app-text 
+            color="grey" 
+            weight="bold">
+            <span>
+                {{tab.title}}
+            </span>
+        </app-text>
+
+        <input 
+            class="tab-input" 
+            [name]="name"
+            [id]="tab.value"
+            [value]="tab.value"
+            (change)="selectTab(tab.value)"
+            type="radio" />
+    </label>
+</div>
