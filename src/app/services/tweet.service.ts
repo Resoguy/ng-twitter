@@ -20,11 +20,15 @@ export class TweetService {
       .subscribe((data: any) => this.feed = data);
   }
 
-  sendTweet(text: string) {
+  sendTweet(text: string, imgId: number = null) {
     const {user, jwt} = this.authService;
-    const newTweet = {
+    const newTweet: any = {
       text,
       user: user.id
+    }
+
+    if (imgId) {
+      newTweet.image = imgId;
     }
 
     return this.http.post(`${env.baseURL}/tweets`, newTweet, {
@@ -71,5 +75,13 @@ export class TweetService {
         'Authorization': `Bearer ${jwt}`
       }
     }).subscribe(data => this.fetchTweets());
+  }
+
+  uploadImage(formData) {
+    return this.http.post(`${env.baseURL}/upload`, formData, {
+      headers: {
+        Authorization: `Bearer ${this.authService.jwt}`
+      }
+    })
   }
 }

@@ -29,8 +29,9 @@
             <app-button 
                 class="close-btn"
                 variant="flat"
-                [icon]="true">
-                <fa-icon [icon]="faGlobeAmericas"></fa-icon>
+                [icon]="true"
+                (click)="removeImgPreview()">
+                <fa-icon [icon]="faTimes"></fa-icon>
             </app-button>
             <div class="image-preview">
                 <app-img

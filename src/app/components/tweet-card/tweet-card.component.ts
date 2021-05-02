@@ -20,6 +20,12 @@ export class TweetCardComponent implements OnInit {
   faChevronDown = faChevronDown;
   isReplyModalOpen: boolean = false;
 
+  get tweetImg(): string {
+    if (!this.tweet.image) return null;
+
+    return `${env.baseURL}${this.tweet.image.url}`
+  }
+
   get replyCount() {
     if (!this.tweet.replies) return 0;
 

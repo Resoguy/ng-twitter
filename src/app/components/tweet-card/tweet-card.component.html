@@ -32,6 +32,13 @@
                         {{tweet.text}}
                     </app-text>
                 </div>
+
+                <div class="image-wrapper" *ngIf="tweetImg">
+                    <app-img
+                        variant="square"
+                        [src]="tweetImg">
+                    </app-img>
+                </div>
     
                 <div class="content-actions">
                     <div class="action-wrapper">

@@ -30,6 +30,11 @@
                 color: $grey;
             }
         }
+
+        .image-wrapper {
+            height: 200px;
+            overflow: auto;
+        }
     }
 
     .content-actions {
