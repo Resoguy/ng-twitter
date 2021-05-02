@@ -1,49 +1,88 @@
-<app-card>
-    <div class="feed-item-wrapper">
-        <div class="item-left">
-            <app-img
-                [src]="tweet.user.imgUrl">
-            </app-img>
-        </div>
-
-        <div class="item-content">
-            <header class="content-header">
-                <div class="header-title-wrapper">
-                    <app-text weight="bold">
-                        {{tweet.user.name}}
-                    </app-text>
-                    <app-text color="grey">
-                        {{tweet.user.username}}
-                    </app-text>
-
-                    <app-text color="grey">
-                        · {{tweet.created_at}}
-                    </app-text>
-                </div>
-
-                <fa-icon class="header-down-icon" [icon]="faChevronDown"></fa-icon>
-            </header>
-
-            <div class="content-body">
-                <app-text>
-                    {{tweet.text}}
-                </app-text>
+<a [routerLink]="'/home/tweets/' + tweet.id">
+    <app-card>
+        <div class="feed-item-wrapper">
+            <div class="item-left">
+                <a [routerLink]="'/home/' + tweet.user.id">
+                    <app-img
+                        [src]="profileImg">
+                    </app-img>
+                </a>
             </div>
+    
+            <div class="item-content">
+                <header class="content-header">
+                    <div class="header-title-wrapper">
+                        <app-text weight="bold">
+                            {{tweet.user.name}}
+                        </app-text>
+                        <app-text color="grey">
+                            {{tweet.user.username}}
+                        </app-text>
+    
+                        <app-text color="grey">
+                            · {{tweet.created_at | date : 'shortTime'}}
+                        </app-text>
+                    </div>
+    
+                    <fa-icon class="header-down-icon" [icon]="faChevronDown"></fa-icon>
+                </header>
+    
+                <div class="content-body">
+                    <app-text>
+                        {{tweet.text}}
+                    </app-text>
+                </div>
+    
+                <div class="content-actions">
+                    <div class="action-wrapper">
+                        <app-button 
+                            class="action-icon" 
+                            variant="flat" 
+                            [icon]="true"
+                            (click)="replyTweet($event); false">
+                            <fa-icon class="action-icon" [icon]="faComment"></fa-icon>
+                            <app-text color="grey" size="sm">
+                                {{replyCount}}
+                            </app-text>
+                        </app-button>
+                    </div>
 
-            <div class="content-actions">
-                <div class="action-wrapper">
-                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
-                </div>
-                <div class="action-wrapper">
-                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
-                </div>
-                <div class="action-wrapper">
-                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
-                </div>
-                <div class="action-wrapper">
-                    <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                    <div class="action-wrapper">
+                        <app-button 
+                            class="action-icon" 
+                            variant="flat" 
+                            [icon]="true"
+                            (click)="likeTweet($event); false">
+                            <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                            <app-text color="grey" size="sm">
+                                {{likeCount}}
+                            </app-text>
+                        </app-button>
+                    </div>
+                    <div class="action-wrapper">
+                        <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                    </div>
+                    <div class="action-wrapper">
+                        <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                    </div>
                 </div>
             </div>
         </div>
+    </app-card>
+</a>
+
+<app-modal [isOpen]="isReplyModalOpen">
+    <header class="modal-header">
+        <app-button (click)="closeReplyModal()" variant="flat" [icon]="true">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </app-button>
+    </header>
+
+    <app-divider></app-divider>
+    
+    <div class="modal-content">
+        <app-tweet-input
+            [parentTweet]="tweet">
+        </app-tweet-input>
     </div>
-</app-card>
+</app-modal>

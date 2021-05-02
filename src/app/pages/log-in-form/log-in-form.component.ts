@@ -35,8 +35,7 @@ export class LogInFormComponent implements OnInit {
 
     this.authService.login(this.loginForm.value)
       .subscribe((data: any) => {
-        this.authService.setUser(data.user);
-        this.authService.setJwt(data.jwt);
+        this.authService.fetchMe(data.jwt);
         this.loginForm.reset();
         this.isLoading = false;
         this.router.navigateByUrl('/home');

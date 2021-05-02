@@ -1,0 +1,10 @@
+<app-list-wrapper
+    title="You might like"
+    footerText="Show more">
+
+    <app-list-item
+        *ngFor="let user of users"
+        [user]="user">
+    </app-list-item>
+    
+</app-list-wrapper>

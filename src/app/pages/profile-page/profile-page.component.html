@@ -6,10 +6,10 @@
 
         <div class="header-title">
             <app-text weight="bold" size="lg">
-                Name
+                {{user.username | uppercase}}
             </app-text>
             <app-text color="grey" size="sm">
-                2624 Tweets
+                {{tweets.length}} Tweets
             </app-text>
         </div>
     </header>
@@ -29,45 +29,57 @@
             size="lg"
             src="https://unsplash.it/135/135"
             [border]="true"></app-img>
-        <app-button>
-            Following
+
+        <app-button 
+            variant="outline" 
+            *ngIf="isMyProfile; else toggleFollowBtn"
+            (click)="openEditModal()">
+            Edit
         </app-button>
+
+        <ng-template #toggleFollowBtn>
+            <app-button 
+                [variant]="isFollowing ? 'primary' : 'outline'"
+                (click)="toggleFollow()">
+                {{isFollowing ? 'Following' : 'Follow'}}
+            </app-button>
+        </ng-template>
     </header>
 
     <div class="profile-title">
         <app-text weight="bold" size="lg">
-            Name
+            {{user.username}}
         </app-text>
         <app-text color="grey">
-            @username
+            {{user.email}}
         </app-text>
     </div>
 
     <div class="profile-bio">
         <app-text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident veniam esse dicta ipsa earum ipsam obcaecati fuga voluptatibus laboriosam, officiis, accusantium autem totam. Eligendi explicabo deserunt nemo magnam assumenda!
+            {{user.bio ? user.bio : 'I am new in twitter'}}
         </app-text>
     </div>
 
     <div class="profile-info">
-        <div class="info-item">
+        <div class="info-item" *ngIf="user.location">
             <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
             <app-text class="stats-item-title" color="grey" size="sm">
-                City, Country
+                {{user.location}}
             </app-text>
         </div>
 
-        <div class="info-item">
-            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+        <a [href]="user.link" target="_blank" rel="noreferrer" class="info-item" *ngIf="user.link">
+            <fa-icon [icon]="faLink"></fa-icon>
             <app-text class="stats-item-title" color="grey" size="sm">
-                City, Country
+                {{user.link.split('//')[1]}}
             </app-text>
-        </div>
+        </a>
 
         <div class="info-item">
-            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+            <fa-icon [icon]="faCalendarAlt"></fa-icon>
             <app-text class="stats-item-title" color="grey" size="sm">
-                City, Country
+                {{user.created_at | date}}
             </app-text>
         </div>
     </div>
@@ -75,7 +87,7 @@
     <div class="profile-statistics">
         <div class="stats-item">
             <app-text weight="bold" size="sm">
-                556
+                {{user.following ? user.following.length : 0}}
             </app-text>
             <app-text class="stats-item-title" color="grey" size="sm">
                 Following
@@ -84,7 +96,7 @@
 
         <div class="stats-item">
             <app-text weight="bold" size="sm">
-                236
+                {{user.followers ? user.followers.length : 0}}
             </app-text>
             <app-text class="stats-item-title" color="grey" size="sm">
                 Followers
@@ -104,7 +116,7 @@
 
         <div class="followers-text-wrapper">
             <app-text color="grey" size="sm">
-                Followed by Joe, Soap and 9 others
+                {{followers | followers}}
             </app-text>
         </div>
     </a>
@@ -121,3 +133,11 @@
     *ngFor="let tweet of tweets"
     [tweet]="tweet">
 </app-tweet-card>
+
+<app-modal [isOpen]="isEditModalOpen">
+    <app-edit-form
+        *ngIf="userData && userData.id"
+        (onCancel)="closeEditModal()"
+        (onSuccess)="onSuccessfulEdit()">
+    </app-edit-form>
+</app-modal>

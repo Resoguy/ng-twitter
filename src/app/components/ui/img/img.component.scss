@@ -15,16 +15,18 @@
 
     &.circle {
         border-radius: 100%;
-    
-        .sm {
+
+        &.sm {
             width: $sm-img;
-            height: $sm-img
+            height: $sm-img;
         }
-        .md {
+    
+        &.md {
             width: $md-img;
             height: $md-img;
         }
-        .lg {
+        
+        &.lg {
             width: $lg-img;
             height: $lg-img;
         }

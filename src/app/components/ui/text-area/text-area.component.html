@@ -4,5 +4,9 @@
         [cols]="cols"
         [rows]="rows"
         [placeholder]="placeholder"
-        [name]="name"></textarea>
+        [name]="name"
+        [value]="value"
+        (input)="onChange($event.target.value)"
+        (blur)="onTouched()">
+    </textarea>
 </div>

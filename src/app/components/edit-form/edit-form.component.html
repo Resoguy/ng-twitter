@@ -1,0 +1,40 @@
+<div>
+    <header class="edit-form-header">
+        <app-button 
+            variant="flat" 
+            [icon]="true"
+            (click)="closeModal()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </app-button>
+    </header>
+
+    <app-divider></app-divider>
+
+    <div>
+        <form [formGroup]="editForm" (submit)="saveForm()">
+            <app-text-area
+                name="bio"
+                placeholder="Enter a bio..."
+                formControlName="bio">
+            </app-text-area>
+
+            <app-input
+                name="location"
+                label="Location"
+                formControlName="location">
+            </app-input>
+
+            <app-input
+                name="link"
+                label="Link"
+                formControlName="link">
+            </app-input>
+
+            <app-button 
+                type="submit"
+                [isLoading]="isLoading">
+                Save
+            </app-button>
+        </form>
+    </div>
+</div>

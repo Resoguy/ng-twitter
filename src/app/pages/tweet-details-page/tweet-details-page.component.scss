@@ -1,0 +1,17 @@
+@import 'src/assets/styles/_theme.scss';
+
+.tweet-details-header {
+    display: flex;
+    align-items: center;
+    padding: $md-space $lg-space;
+
+    .back-btn {
+        color: $blue;
+        font-size: $md-font;
+        padding-right: $md-space;
+    }
+
+    .header-title {
+        margin-left: $md-space;
+    }
+}

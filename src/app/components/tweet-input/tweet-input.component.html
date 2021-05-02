@@ -1,3 +1,17 @@
+<app-card
+    *ngIf="parentTweet"
+    variant="rounded">
+    <app-text>
+        {{parentTweet.user.username}}
+    </app-text>
+    <app-text color="grey" size="sm">
+        {{parentTweet.user.email}}
+    </app-text>
+    <app-text>
+        {{parentTweet.text}}
+    </app-text>
+</app-card>
+
 <div class="tweet-input">
     <div class="side-content">
         <app-img src="https://unsplash.it/48/48"></app-img>
@@ -7,9 +21,26 @@
         <app-text-area
             [rows]="rows"
             placeholder="What's going on?"
-            name="tweet-text"></app-text-area>
+            name="tweet-text"
+            [formControl]="tweetText">
+        </app-text-area>
 
-        <div class="text-actions">
+        <div class="image-preview-wrapper" *ngIf="selectedImgUrl">
+            <app-button 
+                class="close-btn"
+                variant="flat"
+                [icon]="true">
+                <fa-icon [icon]="faGlobeAmericas"></fa-icon>
+            </app-button>
+            <div class="image-preview">
+                <app-img
+                    variant="square"
+                    [src]="selectedImgUrl">
+                </app-img>
+            </div>
+        </div>
+
+        <div *ngIf="!parentTweet" class="text-actions">
             <app-button variant="flat" size="sm">
                 <fa-icon class="button-icon" [icon]="faGlobeAmericas"></fa-icon>
                 <span>Everyone can reply</span>
@@ -20,19 +51,37 @@
         
         <div class="modal-actions">
             <div class="secondary-actions">
+                <input 
+                    class="file-input" 
+                    type="file" 
+                    accept="image/*"
+                    (change)="selectImage()" 
+                    #imgInput />
+                    
                 <app-button
                     *ngFor="let action of modalActions"
                     [icon]="true"
-                    (click)="action.method"
+                    (click)="action.method()"
                     variant="flat">
                     <fa-icon [icon]="action.icon"></fa-icon>
                 </app-button>
             </div>
 
             <div class="main-action">
-                <app-button>
+                <app-button 
+                    *ngIf="!parentTweet; else replyBtn"
+                    [isLoading]="isLoading"
+                    (click)="sendTweet()">
                     Tweet
                 </app-button>
+
+                <ng-template #replyBtn>
+                    <app-button 
+                        [isLoading]="isLoading"
+                        (click)="replyTweet()">
+                        Reply
+                    </app-button>
+                </ng-template>
             </div>
         </div>
     </div>

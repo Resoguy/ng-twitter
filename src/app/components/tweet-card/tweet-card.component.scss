@@ -38,10 +38,20 @@
 
         .action-wrapper {
             flex: 1;
+            display: flex;
+            align-items: center;
 
             .action-icon {
                 color: $grey;
+                margin-right: $xs-space;
             }
         }
     }
+}
+.modal-header {
+    padding: $md-space $lg-space;
+}
+.modal-content {
+    padding: $md-space $lg-space;
+    display: flex;
 }

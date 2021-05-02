@@ -1,0 +1,20 @@
+<button class="dropdown" (click)="toggleMenu()">
+    <div class="dropdown-box">
+        <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+    
+        <span class="dropdown-text">
+            <ng-content></ng-content>
+        </span>
+    </div>
+
+    <div *ngIf="isMenuOpen" class="dropdown-menu">
+        <ul>
+            <li *ngFor="let item of menuItems">
+                <a href="#" (click)="item.callback(); false">
+                    <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon>
+                    <span>{{item.text}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</button>

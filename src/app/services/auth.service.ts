@@ -6,12 +6,16 @@ import {environment as env} from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  user: any = null;
+  user: any = {};
   jwt: string = null;
 
   constructor(
     private http: HttpClient
   ) { }
+
+  hasJwt() {
+    return !!window.localStorage.getItem('jwt');
+  }
 
   setJwt(jwt: string) {
     window.localStorage.setItem('jwt', jwt);
@@ -44,14 +48,49 @@ export class AuthService {
         'Authorization': `Bearer ${jwt}`
       }
     }).subscribe((data: any) => {
-      this.setUser(data);
+      this.fetchUser(data.id);
       this.setJwt(jwt);
     })
+  }
+
+  fetchUser(userId: number) {
+    this.http.get(`${env.baseURL}/users/${userId}`)
+      .subscribe((data: any) => {
+        this.setUser(data);
+      })
   }
 
   logout() {
     window.localStorage.removeItem('jwt');
     this.user = null;
     this.jwt = null;
+  }
+
+  findFollow(userId: number) {
+    return this.user.following.find(follow => follow.user === userId);
+  }
+
+  toggleFollow(userId: number) {
+    const follow = this.findFollow(userId);
+    // Eger takip ediyorsak unfollow yap
+    if (follow) {
+      this.http.delete(`${env.baseURL}/followers/${follow.id}`, {
+        headers: {
+          Authorization: `Bearer ${this.jwt}`
+        }
+      }).subscribe(data => this.fetchUser(this.user.id))
+    // Takip etmiyorsak follow yap
+    } else {
+      const newFollow = {
+        follower: this.user.id,
+        user: userId
+      }
+
+      this.http.post(`${env.baseURL}/followers`, newFollow, {
+        headers: {
+          Authorization: `Bearer ${this.jwt}`
+        }
+      }).subscribe(data => this.fetchUser(this.user.id));
+    }
   }
 }

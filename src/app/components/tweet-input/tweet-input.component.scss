@@ -30,6 +30,26 @@
 
             .secondary-actions {
                 display: flex;
+
+                .file-input {
+                    display: none;
+                }
+            }
+        }
+
+        .image-preview-wrapper {
+            position: relative;
+
+            .close-btn {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translate(-50%, -50%);
+            }
+
+            .image-preview {
+                height: 200px;
+                overflow: auto;
             }
         }
     }

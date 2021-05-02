@@ -25,13 +25,13 @@
     Lists
 </app-nav-link>
 
-<app-nav-link [icon]="faUser" to="/home/1">
+<app-nav-link [icon]="faUser" [to]="'/home/' + user.id">
     Profile
 </app-nav-link>
 
-<app-nav-link [icon]="faEllipsisH" to="/home/1">
+<app-dropdown-link [icon]="faEllipsisH" [menuItems]="moreMenuItems">
     More
-</app-nav-link>
+</app-dropdown-link>
 
 <app-button [block]="true" to="/home/1" (click)="toggleTweetModal()">
     Tweet

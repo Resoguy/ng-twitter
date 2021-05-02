@@ -1,24 +1,27 @@
 <div class="list-item">
     <div class="list-img-wrapper">
         <app-img 
-            [src]="user.imgUrl"
-            [alt]="user.name">
+            [src]="profileImg"
+            [alt]="user.username">
         </app-img>
     </div>
 
     <div class="list-body-wrapper">
         <app-text weight="bold">
-            {{user.name}}
+            {{user.username}}
         </app-text>
 
         <app-text color="grey">
-            {{user.username}}
+            {{user.email}}
         </app-text>
     </div>
 
     <div class="list-actions-wrapper">
-        <app-button variant="outline" size="sm">
-            Follow
+        <app-button 
+            [variant]="isFollowing ? 'primary' : 'outline'" 
+            size="sm"
+            (click)="toggleFollow()">
+            {{isFollowing ? 'Following' : 'Follow'}}
         </app-button>
     </div>
 </div>

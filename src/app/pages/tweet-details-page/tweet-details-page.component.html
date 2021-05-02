@@ -1,0 +1,27 @@
+<app-card>
+    <header class="tweet-details-header">
+        <a routerLink="/home">
+            <fa-icon class="back-btn" [icon]="faArrowLeft"></fa-icon>
+        </a>
+
+        <div class="header-title">
+            <app-text weight="bold" size="lg">
+                Tweet
+            </app-text>
+        </div>
+    </header>
+</app-card>
+
+<app-tweet-card
+    *ngIf="tweet"
+    size="lg"
+    [tweet]="tweet">
+</app-tweet-card>
+
+<app-divider size="lg"></app-divider>
+
+<app-tweet-card
+    *ngFor="let reply of replies"
+    type="reply"
+    [tweet]="reply">
+</app-tweet-card>

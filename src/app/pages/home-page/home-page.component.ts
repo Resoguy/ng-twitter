@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -7,6 +8,7 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  searchText = new FormControl('');
   faSearch = faSearch;
   adImages: any[] = [
     {imgUrl: 'https://unsplash.it/120/100'},
@@ -15,26 +17,6 @@ export class HomePageComponent implements OnInit {
     {imgUrl: 'https://unsplash.it/121/101'},
     {imgUrl: 'https://unsplash.it/120/99'},
     {imgUrl: 'https://unsplash.it/119/100'},
-  ]
-  users: any[] = [
-    {
-      id: 1,
-      imgUrl: 'https://unsplash.it/50/50',
-      name: 'Jake',
-      username: '@jakeuser'
-    },
-    {
-      id: 2,
-      imgUrl: 'https://unsplash.it/50/51',
-      name: 'Jane',
-      username: '@janeuser'
-    },
-    {
-      id: 3,
-      imgUrl: 'https://unsplash.it/51/50',
-      name: 'Alice',
-      username: '@aliceuser'
-    }
   ]
   trends: any[] = [
     {id: 1, category: 'Category 1', hashtag: 'Hashtag 1', tweetCount: '13.3'},
