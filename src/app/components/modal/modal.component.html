@@ -1,5 +1,5 @@
-<div *ngIf="isOpen" class="overlay" tabindex="-1">
-    <app-card class="modal" variant="rounded">
+<div *ngIf="isOpen" class="overlay" tabindex="-1" (click)="close()">
+    <app-card class="modal" variant="rounded" (click)="$event.stopPropagation()">
         <ng-content></ng-content>
     </app-card>
 </div>

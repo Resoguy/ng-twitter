@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DropdownLinkComponent implements OnInit {
   @Input() icon;
   @Input() menuItems: any[];
+  @Input() direction: string = 'down'; // 'up'
+  @Input() fab: boolean = false;
   isMenuOpen: boolean = false;
 
   constructor() { }
@@ -15,7 +17,9 @@ export class DropdownLinkComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleMenu() {
+  toggleMenu(event) {
+    event.stopPropagation();
+    
     this.isMenuOpen = !this.isMenuOpen;
   }
 

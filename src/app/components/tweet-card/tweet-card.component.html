@@ -1,5 +1,5 @@
 <a [routerLink]="'/home/tweets/' + tweet.id">
-    <app-card>
+    <app-card [relative]="true">
         <div class="feed-item-wrapper">
             <div class="item-left">
                 <a [routerLink]="'/home/' + tweet.user.id">
@@ -12,11 +12,11 @@
             <div class="item-content">
                 <header class="content-header">
                     <div class="header-title-wrapper">
-                        <app-text weight="bold">
-                            {{tweet.user.name}}
+                        <app-text weight="bold" *ngIf="tweetOwnerName">
+                            {{tweetOwnerName}}
                         </app-text>
-                        <app-text color="grey">
-                            {{tweet.user.username}}
+                        <app-text color="grey" *ngIf="tweetOwnerUsername">
+                            {{tweetOwnerUsername}}
                         </app-text>
     
                         <app-text color="grey">
@@ -24,7 +24,12 @@
                         </app-text>
                     </div>
     
-                    <fa-icon class="header-down-icon" [icon]="faChevronDown"></fa-icon>
+                    <app-dropdown-link
+                        *ngIf="isOwner"
+                        class="menu-btn"
+                        [icon]="faEllipsisH"
+                        [fab]="true"
+                        [menuItems]="menuItems"></app-dropdown-link>
                 </header>
     
                 <div class="content-body">
@@ -33,14 +38,18 @@
                     </app-text>
                 </div>
 
-                <div class="image-wrapper" *ngIf="tweetImg">
+                <div class="retweet-wrapper" *ngIf="hasOriginalTweet">
+                    <app-tweet-card [tweet]="tweet.originalTweet" [isRetweet]="true"></app-tweet-card>
+                </div>
+
+                <a href="#" (click)="openImgModal($event); false" class="image-wrapper" *ngIf="tweetImg">
                     <app-img
                         variant="square"
                         [src]="tweetImg">
                     </app-img>
-                </div>
+                </a>
     
-                <div class="content-actions">
+                <div class="content-actions" *ngIf="!isRetweet">
                     <div class="action-wrapper">
                         <app-button 
                             class="action-icon" 
@@ -54,23 +63,48 @@
                         </app-button>
                     </div>
 
+                    <div class="action-wrapper" *ngIf="!hasOriginalTweet">
+                        <app-button 
+                            class="action-icon" 
+                            variant="flat" 
+                            [icon]="true"
+                            (click)="isRetweetedByMe ? undoRetweet($event) : openRetweetModal($event); false">
+                            <fa-icon 
+                                class="action-icon" 
+                                [ngClass]="{'green': isRetweetedByMe}"
+                                [icon]="faRetweet">
+                            </fa-icon>
+                            <app-text color="grey" size="sm">
+                                {{retweetCount}}
+                            </app-text>
+                        </app-button>
+                    </div>
+
                     <div class="action-wrapper">
                         <app-button 
                             class="action-icon" 
                             variant="flat" 
                             [icon]="true"
                             (click)="likeTweet($event); false">
-                            <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                            <fa-icon 
+                                class="action-icon" 
+                                [ngClass]="{'red': isLikedByMe}"
+                                [icon]="isLikedByMe ? faFullHeart : faHeart">
+                            </fa-icon>
                             <app-text color="grey" size="sm">
                                 {{likeCount}}
                             </app-text>
                         </app-button>
                     </div>
+
                     <div class="action-wrapper">
-                        <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
-                    </div>
-                    <div class="action-wrapper">
-                        <fa-icon class="action-icon" [icon]="faHeart"></fa-icon>
+                        <app-button 
+                            class="action-icon" 
+                            variant="flat" 
+                            [icon]="true"
+                            (click)="shareTweet($event); false">
+                            <fa-icon class="action-icon" [icon]="faShare"></fa-icon>
+                        </app-button>
                     </div>
                 </div>
             </div>
@@ -78,7 +112,23 @@
     </app-card>
 </a>
 
-<app-modal [isOpen]="isReplyModalOpen">
+<app-modal [isOpen]="isImgModalOpen" (onClose)="closeImgModal()">
+    <app-button 
+        class="img-modal-close-btn" 
+        [icon]="true" 
+        variant="flat"
+        (click)="closeImgModal()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+    </app-button>
+
+    <div class="modal-img-wrapper">
+        <app-img 
+            variant="square"
+            [src]="tweetImg"></app-img>
+    </div>
+</app-modal>
+
+<app-modal [isOpen]="isReplyModalOpen" (onClose)="closeReplyModal()">
     <header class="modal-header">
         <app-button (click)="closeReplyModal()" variant="flat" [icon]="true">
             <fa-icon [icon]="faTimes"></fa-icon>
@@ -89,7 +139,26 @@
     
     <div class="modal-content">
         <app-tweet-input
-            [parentTweet]="tweet">
+            [parentTweet]="tweet"
+            type="reply">
+        </app-tweet-input>
+    </div>
+</app-modal>
+
+<app-modal [isOpen]="isRetweetModalOpen" (onClose)="closeRetweetModal()">
+    <header class="modal-header">
+        <app-button (click)="closeRetweetModal()" variant="flat" [icon]="true">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </app-button>
+    </header>
+
+    <app-divider></app-divider>
+
+    <div class="modal-content">
+        <app-tweet-input 
+            [parentTweet]="tweet" 
+            type="retweet"
+            (onSuccess)="retweet()">
         </app-tweet-input>
     </div>
 </app-modal>

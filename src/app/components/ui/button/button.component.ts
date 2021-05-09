@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input() block: boolean = false;
   @Input() icon: boolean = false;
   @Input() isLoading: boolean = false;
+  @Input() type: string = 'button';
 
   get dynamicClasses() {
     return `${this.size} ${this.variant}`;

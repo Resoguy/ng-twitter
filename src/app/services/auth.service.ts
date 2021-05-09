@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import {environment as env} from 'src/environments/environment';
+import {extractProfileImg} from 'src/app/shared/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) { }
+
+  get profileImg() {
+    return extractProfileImg(this.user);
+  }
 
   hasJwt() {
     return !!window.localStorage.getItem('jwt');
@@ -42,7 +47,7 @@ export class AuthService {
     }
   }
 
-  fetchMe(jwt: string = this.jwt) {
+  fetchMe(jwt: string = this.jwt, successCb: () => void = null) {
     this.http.get(`${env.baseURL}/users/me`, {
       headers: {
         'Authorization': `Bearer ${jwt}`
@@ -50,6 +55,8 @@ export class AuthService {
     }).subscribe((data: any) => {
       this.fetchUser(data.id);
       this.setJwt(jwt);
+
+      if (successCb) successCb();
     })
   }
 
@@ -93,4 +100,8 @@ export class AuthService {
       }).subscribe(data => this.fetchUser(this.user.id));
     }
   }
+
+  fetchUserDetails(userId: number) {
+    return this.http.get(`${env.baseURL}/users/${userId}`);
+  } 
 }

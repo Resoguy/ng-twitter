@@ -40,10 +40,11 @@ export class SignUpFormComponent implements OnInit {
 
     this.authService.signup(this.signupForm.value)
       .subscribe((data: any) => {
-        this.authService.fetchMe(data.jwt);
-        this.signupForm.reset();
-        this.isLoading = false;
-        this.router.navigateByUrl('/home');
+        this.authService.fetchMe(data.jwt, () => {
+          this.signupForm.reset();
+          this.isLoading = false;
+          this.router.navigateByUrl('/home');
+        })
       })
   }
 

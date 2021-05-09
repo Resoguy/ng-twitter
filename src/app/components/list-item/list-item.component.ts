@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import {environment as env} from 'src/environments/environment';
+import { extractProfileImg } from 'src/app/shared/utils';
 
 @Component({
   selector: 'app-list-item',
@@ -17,13 +17,7 @@ export class ListItemComponent implements OnInit {
   }
 
   get profileImg() {
-    try {
-      const imgUrl = this.user.profileImg.formats.thumbnail.url;
-
-      return `${env.baseURL}${imgUrl}`;
-    } catch {
-      return env.placeholderProfileImg;
-    }
+    return extractProfileImg(this.user);
   }
 
   constructor(

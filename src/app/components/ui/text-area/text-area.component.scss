@@ -3,6 +3,7 @@
 
 .textarea-wrapper {
     display: flex;
+    transition: $transition;
 }
 .textarea {
     border: 1px solid transparent;
@@ -15,5 +16,15 @@
 
     &::placeholder {
         color: $grey;
+    }
+
+    &.outline {
+        border-radius: $input-radius;
+        border: 1px solid $line;
+        padding: $sm-space;
+
+        &:focus {
+            border-color: $blue;
+        }
     }
 }

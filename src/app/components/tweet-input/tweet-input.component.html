@@ -14,7 +14,7 @@
 
 <div class="tweet-input">
     <div class="side-content">
-        <app-img src="https://unsplash.it/48/48"></app-img>
+        <app-img [src]="profileImg"></app-img>
     </div>
 
     <div class="main-content">
@@ -79,8 +79,8 @@
                 <ng-template #replyBtn>
                     <app-button 
                         [isLoading]="isLoading"
-                        (click)="replyTweet()">
-                        Reply
+                        (click)="type === 'reply' ? replyTweet() : sendTweet()">
+                        {{type === 'reply' ? 'Reply' : 'Retweet'}}
                     </app-button>
                 </ng-template>
             </div>

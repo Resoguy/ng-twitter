@@ -10,11 +10,32 @@
 
     <app-divider></app-divider>
 
-    <div>
+    <div class="form-body">
         <form [formGroup]="editForm" (submit)="saveForm()">
+            <div class="form-img-wrapper">
+                <input 
+                    class="img-input" 
+                    type="file" 
+                    name="form-img" 
+                    (change)="setProfileImg()"
+                    #formImg />
+                <div class="form-img">
+                    <app-button 
+                        class="camera-btn" 
+                        variant="flat" 
+                        (click)="formImg.click()"
+                        [icon]="true">
+                        <fa-icon [icon]="faCamera"></fa-icon>
+                    </app-button>
+                    <app-img
+                        size="lg"
+                        [src]="profileImg"></app-img>
+                </div>
+            </div>
             <app-text-area
                 name="bio"
                 placeholder="Enter a bio..."
+                variant="outline"
                 formControlName="bio">
             </app-text-area>
 

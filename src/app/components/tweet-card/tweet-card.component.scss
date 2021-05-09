@@ -3,6 +3,11 @@
 .feed-item-wrapper {
     display: flex;
     padding: $md-space $lg-space;
+    transition: $transition;
+
+    &:hover {
+        background-color: lighten($background, 2%);
+    }
 
     .item-left {
         flex-basis: 50px;
@@ -32,8 +37,10 @@
         }
 
         .image-wrapper {
+            display: flex;
             height: 200px;
-            overflow: auto;
+            overflow: hidden;
+            margin-top: $sm-space;
         }
     }
 
@@ -49,6 +56,13 @@
             .action-icon {
                 color: $grey;
                 margin-right: $xs-space;
+
+                &.green {
+                    color: $green!important;
+                }
+                &.red {
+                    color: $red!important;
+                }
             }
         }
     }
@@ -59,4 +73,20 @@
 .modal-content {
     padding: $md-space $lg-space;
     display: flex;
+}
+.modal-img-wrapper {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-modal-close-btn {
+    position: absolute;
+    left: $sm-space;
+    top: $sm-space;
+}
+.menu-btn {
+    position: absolute;
+    top: $md-space;
+    right: $md-space;
 }

@@ -20,18 +20,10 @@ export class TweetService {
       .subscribe((data: any) => this.feed = data);
   }
 
-  sendTweet(text: string, imgId: number = null) {
+  sendTweet(newTweet: any) {
     const {user, jwt} = this.authService;
-    const newTweet: any = {
-      text,
-      user: user.id
-    }
 
-    if (imgId) {
-      newTweet.image = imgId;
-    }
-
-    return this.http.post(`${env.baseURL}/tweets`, newTweet, {
+    return this.http.post(`${env.baseURL}/tweets`, {...newTweet, user: user.id}, {
       headers: {
         'Authorization': `Bearer ${jwt}`
       }
@@ -83,5 +75,64 @@ export class TweetService {
         Authorization: `Bearer ${this.authService.jwt}`
       }
     })
+  }
+
+  deleteTweet({id, originalTweet}) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${this.authService.jwt}`
+      }
+    };
+    
+    this.http.delete(`${env.baseURL}/tweets/${id}`, config).subscribe(data => {
+      if (!originalTweet) return this.fetchTweets();
+
+      this.http.get(`${env.baseURL}/retweets?user=${this.authService.user.id}&&tweet=${originalTweet.id}`)
+        .subscribe(data => {
+          const retweetToDelete = data[0];
+
+          if (!retweetToDelete) return this.fetchTweets();
+
+          this.http.delete(`${env.baseURL}/retweets/${retweetToDelete.id}`, config)
+            .subscribe(data => this.fetchTweets());
+        })
+    })
+  }
+
+  retweet(tweetId: number) {
+    const newRetweet = {
+      user: this.authService.user.id,
+      tweet: tweetId
+    }
+
+    this.http.post(`${env.baseURL}/retweets`, newRetweet, {
+      headers: {
+        Authorization: `Bearer ${this.authService.jwt}`
+      }
+    }).subscribe(data => this.fetchTweets())
+  }
+
+  undoRetweet({id, user, tweet}) {
+    const {jwt} = this.authService;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${jwt}`
+      }
+    }
+
+    this.http.get(`${env.baseURL}/tweets?user=${user}&&originalTweet=${tweet}`)
+      .subscribe(data => {
+        const tweetToDelete = data[0];
+
+        if (!tweetToDelete) return;
+
+        this.http.delete(`${env.baseURL}/tweets/${tweetToDelete.id}`, config)
+          .subscribe(data => {
+            this.http.delete(`${env.baseURL}/retweets/${id}`, config)
+              .subscribe(data => {
+                this.fetchTweets();
+              })
+          })
+      });
   }
 }

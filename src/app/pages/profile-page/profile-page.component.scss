@@ -87,10 +87,15 @@ a.info-item:hover {
 
         .follower-image:not(:first-child) {
             position: relative;
+            margin-left: -$sm-space;
+            z-index: -1;
+        }
+        .follower-image:last-child {
+            z-index: -2;
         }
     }
     .followers-text-wrapper {
-        margin-left: -$xs-space;
+        margin-left: $xs-space;
     }
 
     &:hover {

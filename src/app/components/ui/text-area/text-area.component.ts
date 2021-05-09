@@ -16,9 +16,14 @@ export class TextAreaComponent implements OnInit, ControlValueAccessor {
   @Input() rows: string = '5';
   @Input() placeholder: string;
   @Input() name: string;
+  @Input() variant: string = 'flat';
   value: string;
   onChange: (value:string) => void;
   onTouched: () => void;
+
+  get dynamicClasses() {
+    return this.variant;
+  }
   
 
   constructor() { }
