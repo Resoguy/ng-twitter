@@ -2,7 +2,7 @@
     <app-card [relative]="true">
         <div class="feed-item-wrapper">
             <div class="item-left">
-                <a [routerLink]="'/home/' + tweet.user.id">
+                <a [routerLink]="'/home/' + isRetweet ? tweet.user : tweet.user.id">
                     <app-img
                         [src]="profileImg">
                     </app-img>
@@ -20,7 +20,7 @@
                         </app-text>
     
                         <app-text color="grey">
-                            · {{tweet.created_at | date : 'shortTime'}}
+                            · {{tweet.created_at | date}}
                         </app-text>
                     </div>
     

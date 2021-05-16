@@ -58,7 +58,7 @@ export class TweetInputComponent implements OnInit {
           const imgId = data[0].id;
           const newTweet: any = {
             text: this.tweetText.value,
-            imgId
+            image: imgId
           }
 
           if (this.parentTweet && this.type === 'retweet') {

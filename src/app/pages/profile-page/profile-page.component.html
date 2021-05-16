@@ -125,11 +125,13 @@
         [tabs]="profileTabs"
         name="profileTabs"
         [selectedTab]="selectedProfileTab"
-        (select)="setProfileTab($event)"></app-tabs>
+        (select)="setProfileTab($event)">
+    </app-tabs>
 </app-card>
 
 <app-tweet-card
     *ngFor="let tweet of tweets"
+    [type]="tweet.likes ? 'tweet' : 'reply'"
     [tweet]="tweet">
 </app-tweet-card>
 

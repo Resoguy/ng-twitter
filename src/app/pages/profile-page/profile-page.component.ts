@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {faArrowLeft, faMapMarkerAlt, faLink, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
-import { extractProfileImg } from 'src/app/shared/utils';
+import { extractProfileImg, queryMultiData } from 'src/app/shared/utils';
 import {environment as env} from 'src/environments/environment';
 
 @Component({
@@ -68,6 +68,15 @@ export class ProfilePageComponent implements OnInit {
 
   setProfileTab(selectedTabValue: string) {
     this.selectedProfileTab = selectedTabValue;
+    const requests = {
+      't': this.fetchProfileTweets.bind(this),
+      't-r': this.fetchTweetsAndReplies.bind(this),
+      'm': this.fetchMedia.bind(this),
+      'l': this.fetchLikedTweets.bind(this)
+    }
+
+    const tabRequest = requests[selectedTabValue];
+    tabRequest();
   }
 
   fetchProfile(id: string) {
@@ -75,9 +84,32 @@ export class ProfilePageComponent implements OnInit {
       .subscribe(data => this.user = data);
   }
 
-  fetchProfileTweets(id: string) {
+  fetchProfileTweets(id: string = this.user.id) {
     this.http.get(`${env.baseURL}/tweets?user=${id}&&_sort=created_at:desc`)
-      .subscribe((data: any) => this.tweets = data)
+      .subscribe((data: any) => this.tweets = data);
+  }
+
+  fetchTweetsAndReplies() {
+    this.http.get(`${env.baseURL}/tweets?user=${this.user.id}`)
+      .subscribe((tweets: any) => {
+        this.http.get(`${env.baseURL}/replies?user=${this.user.id}`)
+          .subscribe((replies: any) => {
+            const tweetsAndReplies = [...tweets, ...replies];
+            this.tweets = tweetsAndReplies.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
+          })
+      })
+  }
+
+  fetchMedia() {
+    this.http.get(`${env.baseURL}/tweets?user=${this.user.id}&&_sort=created_at:desc`)
+      .subscribe((tweets: any) => this.tweets = tweets.filter(tweet => tweet.image));
+  }
+
+  fetchLikedTweets() {
+    const queryString = queryMultiData(this.user.likes, 'tweet');
+
+    this.http.get(`${env.baseURL}/tweets?${queryString}&&_sort=created_at:desc`)
+      .subscribe((data: any) => this.tweets = data);
   }
 
   fetchProfileFollowers(id: string) {
